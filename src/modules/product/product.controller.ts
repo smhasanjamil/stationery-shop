@@ -84,9 +84,31 @@ const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
+// Delete product
+const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    await ProductServices.deleteProduct(productId);
+
+    res.status(200).json({
+      status: true,
+      message: "Product deleted successfully",
+      result: {},
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Validation failed",
+      error,
+      stack: (error as Error).stack || "No stack trace available",
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getSingleProduct,
   updateProduct,
+  deleteProduct,
 };
