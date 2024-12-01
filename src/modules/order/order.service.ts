@@ -38,6 +38,39 @@ const createOrderIntoDB = async (orderData: TOrder): Promise<TOrder> => {
   return savedOrder;
 };
 
+// Total Revenue calculation
+const calculatingTotalRevenue = async () => {
+  try {
+    const revenueResult = await OrderModel.aggregate([
+      {
+        $project: {
+          revenue: { $multiply: ["$quantity", "$totalPrice"] },
+          _id: 0,
+        },
+      },
+      {
+        $group: {
+          totalRevenue: { $sum: "$revenue" },
+          _id: null,
+        },
+      },
+      {
+        $project: {
+          totalRevenue: 1,
+          _id: 0,
+        },
+      },
+    ]);
+
+    const totalRevenue =
+      revenueResult.length > 0 ? revenueResult[0].totalRevenue : 0;
+    return parseFloat(totalRevenue.toFixed(2));
+  } catch (error) {
+    throw new Error("Error in colculating revenue: " + error);
+  }
+};
+
 export const OrderServices = {
   createOrderIntoDB,
+  calculatingTotalRevenue,
 };
