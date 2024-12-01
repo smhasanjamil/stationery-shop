@@ -62,8 +62,31 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
+// update product
+const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const body = req.body;
+    const result = await ProductServices.updateProduct(productId, body);
+
+    res.status(200).json({
+      status: true,
+      message: "Update product successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Validation failed",
+      error,
+      stack: (error as Error).stack || "No stack trace available",
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getSingleProduct,
+  updateProduct,
 };

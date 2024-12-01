@@ -12,4 +12,7 @@ router.get("/", ProductControllers.getAllProducts);
 // create a new product
 router.post("/create-product", ProductControllers.createProduct);
 
+// Update product
+router.put("/:productId", ProductControllers.updateProduct);
+
 export const ProductRoutes = router;
