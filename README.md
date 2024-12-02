@@ -112,4 +112,4 @@ npm run dev
 
 ## Live Application
 
-Access the live application at: [Click Here](https://stationery-shop-backend-assignment2.vercel.app/)
+Access the live application at: <a href="https://stationery-shop-backend-assignment2.vercel.app/" target="_blank">Click Here</a>
