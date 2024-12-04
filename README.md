@@ -25,72 +25,23 @@ A full-stack CRUD application to manage products and orders for a stationery sho
   - **ESLint** for code linting and styling.
   - **TypeScript** for type safety.
 
-## CRUD Operations
+## Project Model
 
-### Product Management
+### 1. Stationery Product Model
+- name (string)
+- brand (string)
+- price (number)
+- category (string)
+- description (string)
+- quantity (number)
+- inStock (boolean)
 
-**1. Create a Product**
+### 2. Order Model
 
-- Endpoint: `POST /api/products/create-product`
-- Request Body:
-
-```json
-{
-  "name": "Product Name",
-  "brand": "Product Brand",
-  "price": 10.5,
-  "category": "Writing",
-  "description": "Description of the product",
-  "quantity": 100,
-  "inStock": true
-}
-```
-
-- Action: Creates a new product in the database.
-
-**2. Get All Products**
-
-- Endpoint: `GET /api/products`
-- Action: Fetches a list of all products.
-
-**3. Get Single Product**
-
-- Endpoint: `GET /api/products/:productId`
-- Action: Fetches a single product by its ID.
-
-**4. Update a Product**
-
-- Endpoint: `PUT /api/products/:productId`
-- Request Body: (Similar to Create)
-- Action: Updates the product details.
-
-**5. Delete a Product**
-
-- Endpoint: `DELETE /api/products/:productId`
-- Action: Deletes a product by its ID.
-
-## Order Management
-
-**1. Create an Order**
-
-- Endpoint: `POST /api/orders`
-- Request Body:
-
-```json
-{
-  "email": "customer@example.com",
-  "product": "product_id",
-  "quantity": 2,
-  "totalPrice": 21
-}
-```
-
-- Action: Creates an order for the given product, checks stock, and updates inventory.
-
-**2. Calculate Revenue**
-
-- Endpoint: `GET /api/orders/revenue`
-- Action: Calculates the total revenue from all orders placed.
+- email (string)
+- product (ObjectId)
+- quantity (number)
+- totalPrice (number)
 
 ## Project Setup
 
@@ -126,7 +77,7 @@ npm run dev
 
 Access the live application at: [Click Here](https://stationery-shop-backend-assignment2.vercel.app/)
 
-## Test Application Using API
+## CRUD Operations
 
 ### 1. Create a Stationery Product
 
